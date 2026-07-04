@@ -1,0 +1,42 @@
+%%{init: {"themeVariables": {"textColor":"#000000","primaryTextColor":"#000000","tertiaryTextColor":"#000000"}}}%%
+flowchart LR
+  %% Nodes
+  A([Start])
+  B[Classifier]
+  R{"Reply<br/>Needed?"}
+  C{"Human<br/>Action<br/>Required?"}
+  D[Actions<br/>Summarizer]
+  E{"Actions<br/>Fulfilled?"}
+  P[Prompt to<br/>Fulfill<br/>Actions]
+  F[Inferencer]
+  G[Topics<br/>Suggester]
+  H[Message<br/>Generator]
+  Z([End])
+
+  %% Edges (with labels)
+  A --> B
+  B --> R
+  R -- "No" --> Z
+  R -- "Yes" --> C
+  C -- "No" --> G
+  C -- "Yes" --> D
+  D --> E
+  E -- "No" --> P
+  P --> Z
+  E -- "Yes" --> F
+  F --> G
+  G --> H
+  H --> Z
+
+  %% Styling
+  style A fill:#e6e6e6,stroke:#b3b3b3,stroke-width:2px,color:#000000
+  style Z fill:#e6e6e6,stroke:#b3b3b3,stroke-width:2px,color:#000000
+  style B fill:#eef4ff,stroke:#6b8afd,stroke-width:2px,color:#000000
+  style R fill:#fdeac7,stroke:#f2a23a,stroke-width:2px,color:#000000
+  style G fill:#eef4ff,stroke:#6b8afd,stroke-width:2px,color:#000000
+  style H fill:#eef4ff,stroke:#6b8afd,stroke-width:2px,color:#000000
+  style D fill:#eef4ff,stroke:#6b8afd,stroke-width:2px,color:#000000
+  style F fill:#eef4ff,stroke:#6b8afd,stroke-width:2px,color:#000000
+  style C fill:#fdeac7,stroke:#f2a23a,stroke-width:2px,color:#000000
+  style E fill:#fdeac7,stroke:#f2a23a,stroke-width:2px,color:#000000
+  style P fill:#dff6e3,stroke:#55b66b,stroke-width:2px,color:#000000
